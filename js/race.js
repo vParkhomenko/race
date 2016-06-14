@@ -6,23 +6,14 @@
     var bolid = document.getElementById('bolid'),
         posBolidX = 0,
         posBolidY = bolid.style.bottom;
-    var points = 0;
     var speedStartGame = 5000;
     var speedShowLine = 5;
     var speedInitCar = 5;
-    var stage = 0;
 
     function init() {
-        var car = document.createElement('div');
-        car.id = "car";
-        track.appendChild(car);
-        var posCarY = 0;
-        var arrX = ['0', '80', '160'];
-        var posCarX = Math.floor(Math.random() * arrX.length);
-        car.style.left = arrX[posCarX] + 'px';
-        var carCol = ['img/car.png', 'img/car2.png', 'img/car3.png'];
-        var col = Math.floor(Math.random() * carCol.length);
-        car.style.background = 'URL(' + carCol[col] + ') center no-repeat';
+    var points = 0;
+        var stage = 0;
+
         var arrLine = [{
             el: null,
             lineY: 104
@@ -46,10 +37,7 @@
             arrLine[i].el.className = "line";
             track.appendChild(arrLine[i].el);
         }
-        var draw = function() {
-            showLine();
-            initCar();
-        }
+
 
         var showLine = function() {
 
@@ -77,31 +65,63 @@
 
         };
 
+        var arrCar = [{
+            el : null, 
+            posCarX : null,
+            posCarY : 0, 
+            colCar : null
+        }];
+        var arrX = ['0', '80', '160'];
+        var posX = Math.floor(Math.random() * arrX.length);
+        var arrCol = ['img/car.png', 'img/car2.png', 'img/car3.png'];
+        var col = Math.floor(Math.random() * arrCol.length);
+
+        for (var i = 0; i < arrCar.length; i++) {
+            arrCar[i].el = document.createElement('div');
+            arrCar[i].el.id = "car" + i;
+            arrCar[i].el.className = "car";
+            track.appendChild(arrCar[i].el);
+
+            arrCar[i].posCarX = arrX[posX];
+            arrCar[i].el.style.left = arrCar[i].posCarX + 'px';
+
+            arrCar[i].colCar = arrCol[col];
+            arrCar[i].el.style.background = 'URL(' + arrCol[col] + ') center no-repeat';
+        }
+
         var initCar = function() {
-
-            if (posBolidX == arrX[posCarX] && posBolidY == 0 && posCarY == 241) {
-                track.removeChild(car);
-                alert("Game over. You have " + points + " points");
-                window.location.reload();
+            for (var i = 0; i < arrCar.length; i++) {
+            arrCar[i].posCarY = Math.floor(arrCar[i].posCarY + stage + 1);
+            arrCar[i].el.style.top = arrCar[i].posCarY + 'px';
+                if (arrCar[i].posCarY >= 420) {
+                    arrCar[i].posCarY = 0;
+                }
+                if ( arrCar[i].posCarY >= 241 && arrCar[i].posCarY <= 320) {
+                    if (posBolidX == arrX[posX] && posBolidY == 0) {
+                    clearInterval(timerDraw);
+                    alert("Game over. You have " + points + " points");
+                    track.removeChild(arrCar[i].el);
+                    window.location.reload();
+                    }
+                }
             }
-            if (posCarY == 420) {
-                track.removeChild(car);
-                init();
-            }
-
-            posCarY = Math.floor(posCarY + stage + 1);
-            car.style.top = posCarY + 'px';
 
         };
-        points = Math.floor(points + 100);
+
         document.getElementById('points').innerHTML = 'Points: ' + points;
 
         reset.addEventListener('click', function() {
             clearInterval(timerDraw);
             window.location.reload();
             document.getElementById('points').innerHTML = '';
-            bolid.style.left = 0;
         }, false);
+
+        var draw = function() {
+/*        stage = Math.floor(stage + 1);*/
+        points = Math.floor(points + 100);
+            showLine();
+            initCar();
+        }
 
         var timerDraw = setInterval(function() {
             draw();
