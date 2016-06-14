@@ -1,0 +1,102 @@
+body {
+	box-sizing: border-box;
+}
+#around {
+	position: absolute;
+	z-index: 2;
+	top: 0px;
+	left: -5px;
+	width: 240px;
+	height: 320px;
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+	border-bottom: 100px solid black;
+	border-top: 100px solid black;
+	border-radius: 10px;
+}
+#track {
+	width: 240px;
+	height: 420px;
+	background: gray;
+	position: relative;
+	margin: 0 auto;
+	transform: rotateX(28deg);
+	}
+#bolid {
+	width: 80px;
+	height: 100px;
+	background: url('../img/bolid.png') center no-repeat;
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	box-shadow: 0 14px 9px -10px #000000, 0 0 0 #FFFFFF;
+    transform: rotateX(40deg);
+}
+#car {
+	width: 80px;
+	height: 100px;
+	position: absolute;
+
+	z-index: 1;
+	box-shadow: 0 14px 9px -10px #000000, 0 0 0 #FFFFFF;
+    transform: rotateX(40deg);
+}
+#points {
+	height: 20px;
+    background: white;
+    position: absolute;
+    top: -40px;
+    left: 5px;
+    padding: 5px;
+    width: 100%;
+    max-width: 220px;
+}
+.line {
+	position: absolute;
+    top: 0;
+    left: 79px;
+    border-left: 2px solid white;
+    border-right: 2px solid white;
+    width: 78px;
+    height: 20px;
+}
+#menu {
+	position: absolute;
+    top: 350px;
+    left: 45px;
+}
+#start, #reset {
+	border-radius: 50%;
+	width: 50px;
+    height: 50px;
+    outline: none;
+}
+#start {
+	margin-right: 40px;
+}
+#start::before {
+	content: 'Start';
+	color: white;
+    position: relative;
+    top: -37px;
+}
+#reset::before {
+	content: 'Reset';
+	color: white;
+    position: relative;
+    top: -37px;
+}
+h1 {
+	background: url('../img/logo.png') center left no-repeat;
+	position: absolute;
+    top: -115px;
+    left: 10px;
+    color: white;
+    font-size: 30px;
+    padding-left: 75px;
+}
+
+
+
+
+
