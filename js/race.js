@@ -11,16 +11,17 @@
         posX = 0,
         arrCol = null,
         col = 0,
-        timerDraw = null,
-        points = 0,
-        stage = 0
-    document.getElementById('points').innerHTML = 'Points: ' + points;
+        timerDraw = null
 
     // init the game resources
     initRace();
 
     // functions:
     function initRace() {
+        points = 0,
+        stage = 0,
+        document.getElementById('points').innerHTML = 'Points: ' + points;
+        
         initLine();
         initCar();
 
@@ -54,6 +55,12 @@
             arrLine[i].el.className = "line";
             track.appendChild(arrLine[i].el);
         }
+
+        arrLine[0].el.style.top = arrLine[0].lineY + 'px';
+        arrLine[1].el.style.top = arrLine[1].lineY + 'px';
+        arrLine[2].el.style.top = arrLine[2].lineY + 'px';
+        arrLine[3].el.style.top = arrLine[3].lineY + 'px';
+        arrLine[4].el.style.top = arrLine[4].lineY + 'px';
     }
 
     function initCar() {
@@ -92,6 +99,7 @@
     }
 
     function showLine() {
+/*      debugger;*/
 
         arrLine[0].lineY = Math.floor(arrLine[0].lineY + stage + 3);
         arrLine[0].el.style.top = arrLine[0].lineY + 'px';
