@@ -1,10 +1,8 @@
 (function() {
     //  vars:
     var bolid = document.getElementById('bolid'),
-        posBolidX = 0,
+        posBolidX = bolid.style.left,
         posBolidY = bolid.style.bottom,
-        points = 0,
-        stage = 0,
         arrLine = null,
         arrCar = null,
         arrX = null,
@@ -18,6 +16,7 @@
 
     // functions:
     function initRace() {
+        posBolidX = 0,
         points = 0,
         stage = 0,
         document.getElementById('points').innerHTML = 'Points: ' + points;
@@ -99,7 +98,6 @@
     }
 
     function showLine() {
-/*      debugger;*/
 
         arrLine[0].lineY = Math.floor(arrLine[0].lineY + stage + 3);
         arrLine[0].el.style.top = arrLine[0].lineY + 'px';
@@ -183,7 +181,7 @@
     function resetRace() {
         clearInterval(timerDraw);
         track.removeChild(arrCar[0].el);
-
+        bolid.style.left = 0;
         for (var i = 0; i < arrLine.length; i++) {
             track.removeChild(arrLine[i].el);
         }
