@@ -39,7 +39,6 @@ body {
 	z-index: 1;
 	box-shadow: 0 14px 9px -10px #000000, 0 0 0 #FFFFFF;
     transform: rotateX(40deg);
-    background: red;
 }
 #points {
 	height: 20px;
